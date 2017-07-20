@@ -1,4 +1,4 @@
-# ゼロから作る Deep Learning C++ Version
+# ゼロから作る Deep Learning 〜C++ Version〜
 
 本リポジトリではオライリー・ジャパン発行書籍『ゼロから作る Deep Learning』のC++バージョンを作っていきます。  
 本家のPythonバージョンは[こちら](https://github.com/oreilly-japan/deep-learning-from-scratch)。
