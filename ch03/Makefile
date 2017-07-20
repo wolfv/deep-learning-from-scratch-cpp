@@ -13,20 +13,22 @@ BIN   = $(TGT)
 OBJS  = $(SRCS:.cc=.o)
 LIBS  =
 
+all: compile_all
+
+compile: $(BIN)
+
 compile_all:
 	@for target in $(TGTS); do \
 	make TGT=$${target} compile; \
 	done
 
-compile: $(BIN)
+test: $(BIN)
+	./$(BIN)
 
 test_all:
 	@for target in $(TGTS); do \
 	make TGT=$${target} test; \
 	done
-
-test: $(BIN)
-	./$(BIN)
 
 $(BIN): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $(OBJS) -o $@ $(LIBS)
@@ -42,4 +44,4 @@ clean_all:
 	make TGT=$${target} clean; \
 	done
 
-.PHONY: test test_all clean clean_all
+.PHONY: all compile compile_all test test_all clean clean_all
