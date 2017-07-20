@@ -5,7 +5,7 @@ INCLUDES = -Iinclude \
 
 TGTS   = `ls test/test_*.cc | sed -e s/.cc//`
 TGT   ?= test/test_nn_3layers
-#TGT  ?= test/test_terelu
+#TGT  ?= test/test_relu
 #TGT  ?= test/test_xtensor
 #SRCS  = src/relu.cc
 SRCS += $(TGT).cc
@@ -13,13 +13,20 @@ BIN   = $(TGT)
 OBJS  = $(SRCS:.cc=.o)
 LIBS  =
 
-test: $(BIN)
-	./$(BIN)
+compile_all:
+	@for target in $(TGTS); do \
+	make TGT=$${target} compile; \
+	done
+
+compile: $(BIN)
 
 test_all:
 	@for target in $(TGTS); do \
 	make TGT=$${target} test; \
 	done
+
+test: $(BIN)
+	./$(BIN)
 
 $(BIN): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $(OBJS) -o $@ $(LIBS)
